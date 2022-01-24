@@ -1,0 +1,241 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Site.master.cs" Inherits="Site" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Numan Store</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <link href="templatemo_style.css" rel="stylesheet" type="text/css" />
+
+    <link rel="stylesheet" href="nivo-slider.css" type="text/css" media="screen" />
+
+    <link rel="stylesheet" type="text/css" href="css/ddsmoothmenu.css" />
+
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/ddsmoothmenu.js">
+
+/***********************************************
+* Smooth Navigational Menu- (c) Dynamic Drive DHTML code library (www.dynamicdrive.com)
+* This notice MUST stay intact for legal use
+* Visit Dynamic Drive at http://www.dynamicdrive.com/ for full source code
+***********************************************/
+
+    </script>
+
+    <script type="text/javascript">
+
+        ddsmoothmenu.init({
+            mainmenuid: "top_nav", //menu DIV id
+            orientation: 'h', //Horizontal or vertical menu: Set to "h" or "v"
+            classname: 'ddsmoothmenu', //class added to menu's outer DIV
+            //customtheme: ["#1c5a80", "#18374a"],
+            contentsource: "markup" //"markup" or ["container_id", "path_to_menu_file"]
+
+        })
+
+    </script>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <div id="templatemo_body_wrapper">
+        <div id="templatemo_wrapper">
+            <form id="form1" runat="server">
+                <div>
+                    <div id="welcomeLine" class="row">
+                        <div class="span6">
+                            Hoş Geldin<strong> Kullanıcı </strong>
+                            <asp:Label ID="lblIPAdd" runat="server" Text=""></asp:Label>
+                        </div>
+                        <div class="span6">
+                            <div class="pull-right">
+                                <%--<a href="product_summary.html"><span class="">Fr</span></a>
+		<a href="product_summary.html"><span class="">Es</span></a>
+		<span class="btn btn-mini">En</span>
+		<a href="product_summary.html"><span>&pound;</span></a>
+		<span class="btn btn-mini">$155.00</span>
+		<a href="product_summary.html"><span class="">$</span></a>
+		<a href="sepetim.aspx"><span class="btn btn-mini btn-primary"><i class="icon-shopping-cart icon-white"></i> [ 3 ] Itemes in your cart </span> </a> --%>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="templatemo_header">
+
+                        <div id="site_title">
+                            <h1><a href="Default.aspx">Online Alışveriş Mağazası</a></h1>
+                        </div>
+                        <div id="header_right">
+                            <p>
+                                <a href="#">My Account</a>  | <a href="sepetim.aspx">Sepetim</a> | <a href="odeme.aspx">Ödeme</a> | <a href="https://localhost:44393/giris.aspx">Admin Log In</a>
+                            </p>
+                            <p>
+                                <%SepetCRUD sepet = new SepetCRUD();
+                                    int adet = sepet.urunadet((Session["uye"].ToString()));
+                                    if (adet == 0)
+                                    {
+                                %>
+                                <a href="#"><span class="btn btn-mini btn-primary"><i class="icon-shopping-cart icon-white"></i>Sepetinizde ürün bulunmamaktadır</span> </a>
+                                <% }
+
+                                    else
+                                    {
+                                %>
+
+
+
+                                <a href="sepetim.aspx"><span class="btn btn-mini btn-primary"><i class="icon-shopping-cart icon-white"></i>Sepetinizde [<%=adet%>] adet ürün vardır</span> </a>
+                                <%} %>
+                            </p>
+                        </div>
+                        <div class="cleaner"></div>
+                    </div>
+                    <!-- END of templatemo_header -->
+
+                    <div id="templatemo_menubar">
+                        <div id="top_nav" class="ddsmoothmenu">
+                            <ul>
+                                <li><a href="default.aspx" class="selected">Ana Sayfa</a></li>
+                                <li><a href="urunler.aspx">Ürünler</a>
+                                    <%--<ul>
+                                        <li><a href="#submenu1">Sub menu 1</a></li>
+                                        <li><a href="#submenu2">Sub menu 2</a></li>
+                                        <li><a href="#submenu3">Sub menu 3</a></li>
+                                        <li><a href="#submenu4">Sub menu 4</a></li>
+                                        <li><a href="#submenu5">Sub menu 5</a></li>
+                                    </ul>--%>
+                                </li>
+                                <%--<li><a href="about.html">Hakkımızda</a>--%>
+                                   <%-- <ul>
+                                        <li><a href="#submenu1">Sub menu 1</a></li>
+                                        <li><a href="#submenu2">Sub menu 2</a></li>
+                                        <li><a href="#submenu3">Sub menu 3</a></li>
+                                    </ul>--%>
+                                </li>
+                                <li><a href="sorular.aspx">Sıkça Sorulan Sorular</a></li>
+                                <li><a href="odeme.aspx">Ödeme</a></li>
+                                <li><a href="iletisim.aspx">Bize Ulaşın</a></li>
+                            </ul>
+                            <br style="clear: left" />
+                        </div>
+                        <!-- end of ddsmoothmenu -->
+                        <div id="templatemo_search">
+                            <form>
+                                <input runat="server" type="text" value=" " name="keyword" id="keyword" title="keyword" onfocus="clearText(this)" onblur="clearText(this)" class="txt_field" />
+                                <input runat="server" onserverclick="searchbutton_ServerClick" type="submit" name="Search" value=" " alt="Search" id="searchbutton" title="Search" class="sub_btn" />
+                            </form>
+                        </div>
+                    </div>
+                    <!-- END of templatemo_menubar -->
+
+
+
+
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
+                <div id="templatemo_main">
+                    <div id="sidebar" class="float_l">
+                        <div class="sidebar_box">
+                            <span class="bottom"></span>
+                            <%  System.Data.DataTable ktbl = new System.Data.DataTable();
+                                UrunCRUD kurun = new UrunCRUD();
+                                ktbl = kurun.kategorilericekme();
+                            %>
+                            <h3>Kategoriler</h3>
+                            <div class="content">
+                                <ul class="sidebar_list">
+
+                                    <% 
+                                        for (int i = 0; i < ktbl.Rows.Count; i++)
+                                        {%>
+                                    <a href="urunler.aspx?kat=<%=ktbl.Rows[i]["kategoriler"] %>"><%=ktbl.Rows[i]["kategoriler"]%></a></br>
+             
+				<%}%>
+                                    <%--                    	<li class="first"><a href="#">Yeni Gelenler</a></li>
+                        <li><a href="#">Üst Giyim</a></li>
+                        <li><a href="#">Alt Giyim</a></li>
+                        <li><a href="#">Dış Giyim</a></li>
+                        <li><a href="#">Çok Satanlar</a></li>
+                        <li><a href="#">Aksesuar</a></li>
+                      
+                        <li class="last"><a href="#">Ayakkabı</a></li>--%>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <%System.Data.DataTable yg = new System.Data.DataTable();
+                            UrunCRUD yurun = new UrunCRUD();
+                            yg = yurun.yenigelenler("Favoriler");
+
+                        %>
+
+                        <div class="sidebar_box">
+                            <span class="bottom"></span>
+                            <h3>Favoriler </h3>
+                            <div class="content">
+                                <% for (int i = 0; i < yg.Rows.Count; i++)
+                                    {
+
+                                %>
+                                <div class="bs_box">
+                                   
+                             <a href="urunincele.aspx?bno=<%=yg.Rows[i][7]%>"><img width="75px" src="<%=yg.Rows[i]["resim"]%>" alt=""/></a>
+                                    <h4><%=yg.Rows[i]["urunadi"]%></h4>
+                                    <p class="price"><%=yg.Rows[i]["fiyat"]%> TL</p>
+
+                                    <div class="cleaner"></div>
+
+                                </div>
+                                <%
+                                    }
+                                %>
+                                <%--   <div class="bs_box">
+                                    <a href="#">
+                                        <img src="images/templatemo_image_01.jpg" alt="image" /></a>
+                                    <h4><a href="#">Lorem ipsum dolor sit</a></h4>
+                                    <p class="price">$12</p>
+                                    <div class="cleaner"></div>
+                                </div>
+                                <div class="bs_box">
+                                    <a href="#">
+                                        <img src="images/templatemo_image_01.jpg" alt="image" /></a>
+                                    <h4><a href="#">Phasellus ut dui</a></h4>
+                                    <p class="price">$20</p>
+                                    <div class="cleaner"></div>
+                                </div>
+                                <div class="bs_box">
+                                    <a href="#">
+                                        <img src="images/templatemo_image_01.jpg" alt="image" /></a>
+                                    <h4><a href="#">Vestibulum ante</a></h4>
+                                    <p class="price">$8</p>
+                                    <div class="cleaner"></div>
+                                </div>--%>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="cleaner"></div>
+
+                </div>
+                <!-- END of templatemo_main -->
+                <div id="templatemo_footer">
+                    <p>
+                        <a href="default.aspx">Ana Sayfa</a> | <a href="urunler.aspx">Ürünler</a> |<%-- <a href="#">Hakkımızda</a> |--%> <a href="sorular.aspx">Sıkça Sorulan Sorular</a> | <a href="odeme.aspx">Ödeme</a> | <a href="iletisim.aspx">Bize Ulaşın</a>
+                    </p>
+
+                   Kopyası Saklıdır © 2021 <a href="#">Numan STORE/a>
+                    <!-- Credit: www.templatemo.com -->
+
+                </div>
+                <!-- END of templatemo_footer -->
+
+
+            </form>
+        </div>
+    </div>
+</body>
+</html>
